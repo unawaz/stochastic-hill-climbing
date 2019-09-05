@@ -18,11 +18,67 @@ td { border : 1px solid black }</style><h1>Umar's Home Page</h1><ol><li><a href=
 <li><a href=''>Monthly</a></li>
 <li><a href=''>Yearly</a></li>
 <li><a href=''>Decadel</a></li></ol></li>
+<li><a href='#robocars'>Robocars</a></li>
 <li><a href='#code'>This Code</a></li></ol><a name='bookmarks'></a><h2>Bookmarks</h2><ul><li><a href='https://news.ycombinator.com'>Hacker News</a></li>
 <li><a href='https://hackernewsbooks.com'>Hacker News Books</a></li>
 <li><a href='https://www.reddit.com/r/machinelearning'>Reddit : Machine Learning</a></li>
 <li><a href='https://www.reddit.com/r/datasets'>Reddit : Data Sets</a></li>
-<li><a href='https://www.reddit.com/r/selfdrivingcars'>Reddit : Self Driving Cars</a></li></ul><a name='personality'></a><h2>Personality Defect Elucidation and Correction</h2><h3>Character Strengths and Virtues</h3><table><tr><td>XXX</td>
+<li><a href='https://www.reddit.com/r/selfdrivingcars'>Reddit : Self Driving Cars</a></li></ul><h2>Inheritance Plan</h2><table><tr><td>Activity</td>
+<td>Actor</td>
+<td>September</td>
+<td>October</td>
+<td>Event One</td>
+<td>November</td>
+<td>Event Two</td>
+<td>December</td></tr>
+<tr><td>Buy Tanveer House in Cambridge</td>
+<td>Sajaad, Rabnawaz, Tanveer, Khalid, Shabia, Pervaiz</td>
+<td></td>
+<td></td>
+<td>ACTIVE</td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr><td>Sell 232 Rymal, Purchase Oshawa Triplex</td>
+<td>Mehwish, Saleem, Shabia, Khalid, Rabnawaz</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>ACTIVE</td>
+<td></td></tr>
+<tr><td>Sell Pakistan properties</td>
+<td>Sajaad</td>
+<td>ACTIVE</td>
+<td>ACTIVE</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr><td>Renovate 232 Rymal</td>
+<td>Umar, Mariam, Mehwish, Saleem</td>
+<td></td>
+<td></td>
+<td></td>
+<td>ACTIVE</td>
+<td></td>
+<td></td></tr>
+<tr><td>Prospect Tanvver House in Cambridge</td>
+<td>Mehwish, Saleem, Khalid, Shabia, Pervaiz</td>
+<td>ACTIVE</td>
+<td>ACTIVE</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr><td>Prospect Triplex in Oshawa</td>
+<td>Mehwish, Saleem</td>
+<td>ACTIVE</td>
+<td>ACTIVE</td>
+<td></td>
+<td>ACTIVE</td>
+<td></td>
+<td></td></tr></table><a name='personality'></a><h2>Personality Defect Elucidation and Correction</h2><h3>Character Strengths and Virtues</h3><table><tr><td>XXX</td>
 <td>Wisdom</td>
 <td>Courage</td>
 <td>Humanity</td>
@@ -908,7 +964,12 @@ td { border : 1px solid black }</style><h1>Umar's Home Page</h1><ol><li><a href=
 <li>eating out</li>
 <li>spontaneous giving</li>
 <li>vacations</li>
-<li>subscriptions (e.g. netflix)</li></ul></li></ul><a name='code'></a><h2>This Code</h2><pre>module U = struct
+<li>subscriptions (e.g. netflix)</li></ul></li></ul><a name='robocars'></a><h2>Robocars</h2><ul><li>Housing : RV fleets<ul><li>Kitchen</li>
+<li>Bedroom</li>
+<li>Bathroom</li>
+<li>Lounge</li>
+<li>Storage</li></ul></li>
+<li>Prisons : Gridded RV's</li></ul><a name='code'></a><h2>This Code</h2><pre>module U = struct
   let cat l = String.concat "" l
   let unwords l = String.concat " " l
   let unlines l = String.concat "\n" l
@@ -1386,6 +1447,17 @@ let this_code =
   cat [a;H.h2 "This Code";
        "<pre>";F.read f |> unlines;"<pre>"]
 
+let robocars =
+  let housing = H.ul ["Kitchen";
+                      "Bedroom";
+                      "Bathroom";
+                      "Lounge";
+                      "Storage"] in
+  let l = H.ul [cat ["Housing : RV fleets";housing];
+                "Prisons : Gridded RV's"] in
+  cat [H.anchor "robocars";H.h2 "Robocars";l]
+
+  
 let toc =
   let h = H.link in
   let trips =
@@ -1417,18 +1489,42 @@ let toc =
     cat [h "#personality"
            ("Personality Defect Elucidation"
             ^ " and Correction");l] in
+  let rcars = cat [h "#robocars" "Robocars"] in
   H.ol [h "#bookmarks" "Bookmarks";
         personality;
         h "#amania" "Assignments for Amania";
-        advice;trips;budget;
+        advice;trips;budget;rcars;
         h "#code" "This Code"]
+
+let inheritance =
+  let h2 = H.h2 "Inheritance Plan" in
+  let e = "" in
+  let h = ["Activity";"Actor";"September";
+           "October";"Event One";
+           "November";"Event Two";"December"] in
+  let a = "ACTIVE" in
+  let pak = ["Sell Pakistan properties";"Sajaad";a;a;e;e;e;e] in
+  let ham = ["Renovate 232 Rymal";
+             "Umar, Mariam, Mehwish, Saleem";e;e;e;a;e;e] in
+  let cam = ["Prospect Tanvver House in Cambridge";
+             "Mehwish, Saleem, Khalid, Shabia, Pervaiz";
+             a;a;e;e;e;e] in
+  let osh = ["Prospect Triplex in Oshawa";
+             "Mehwish, Saleem";a;a;e;a;e;e] in
+  let one = ["Buy Tanveer House in Cambridge";
+             "Sajaad, Rabnawaz, Tanveer, Khalid, Shabia, Pervaiz";
+             e;e;a;e;e;e] in
+  let two = ["Sell 232 Rymal, Purchase Oshawa Triplex";
+             "Mehwish, Saleem, Shabia, Khalid, Rabnawaz";
+             e;e;e;e;a;e] in
+  cat [h2;H.table [h;one;two;pak;ham;cam;osh]]
   
 let _ =
   let f = "/home/umar/public_html/index.html" in
   let g = "/home/umar/stochastic-hill-climbing/index.html" in
   let h = [H.title title] in
   let b = [css;H.h1 title;toc;bookmarks;
-           personality;people;
-           trips;budgeting;this_code] in
+           inheritance;personality;people;
+           trips;budgeting;robocars;this_code] in
   H.page f h b;
   H.page g h b<pre></body></html>
