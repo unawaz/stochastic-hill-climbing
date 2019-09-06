@@ -30,7 +30,23 @@ td { border : 1px solid black }</style><h1>Umar's Home Page</h1><ol><li><a href=
 <td>Event One</td>
 <td>November</td>
 <td>Event Two</td>
-<td>December</td></tr>
+<td>Result</td></tr>
+<tr><td></td>
+<td>Tanver Rabnawaz</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>$400,000 house in Cambridge</td></tr>
+<tr><td></td>
+<td>Mehwish, Beenish, Ahmed, Umar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>$500,000 duplex/triplex in Oshawa</td></tr>
 <tr><td>Buy Tanveer House in Cambridge</td>
 <td>Sajaad, Rabnawaz, Tanveer, Khalid, Shabia, Pervaiz</td>
 <td></td>
@@ -1501,8 +1517,12 @@ let inheritance =
   let e = "" in
   let h = ["Activity";"Actor";"September";
            "October";"Event One";
-           "November";"Event Two";"December"] in
+           "November";"Event Two";"Result"] in
   let a = "ACTIVE" in
+  let wife = [e;"Tanver Rabnawaz";e;e;e;e;e;
+              "$400,000 house in Cambridge"] in
+  let kids = [e;"Mehwish, Beenish, Ahmed, Umar";e;e;e;e;e;
+              "$500,000 duplex/triplex in Oshawa"] in
   let pak = ["Sell Pakistan properties";"Sajaad";a;a;e;e;e;e] in
   let ham = ["Renovate 232 Rymal";
              "Umar, Mariam, Mehwish, Saleem";e;e;e;a;e;e] in
@@ -1517,7 +1537,7 @@ let inheritance =
   let two = ["Sell 232 Rymal, Purchase Oshawa Triplex";
              "Mehwish, Saleem, Shabia, Khalid, Rabnawaz";
              e;e;e;e;a;e] in
-  cat [h2;H.table [h;one;two;pak;ham;cam;osh]]
+  cat [h2;H.table [h;wife;kids;one;two;pak;ham;cam;osh]]
   
 let _ =
   let f = "/home/umar/public_html/index.html" in
