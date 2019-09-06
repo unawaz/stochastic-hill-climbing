@@ -1024,7 +1024,7 @@ module C = struct
   let rule s k v = cat [s;" { ";k;": ";v;" }"]
   let func n al = cat [n;"(";uc al;")"]
   let pc n = si n ^ "%"
-  let style l = cat ["style>";unlines l;"</style>"]
+  let style l = cat ["<style>";unlines l;"</style>"]
 
   let invert s n = rule s "filter" (pc n)
   let invert_full s = invert s 100
@@ -1584,5 +1584,5 @@ let _ =
            inheritance;folly;personality;people;
            trips;budgeting;robocars;this_code] in
   H.page f h b;
-  H.pagei g h b<pre>style>body { filter: 100% }
+  H.pagei g h b<pre><style>body { filter: 100% }
 img { filter: 100% }</style></body></html>
