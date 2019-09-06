@@ -1,17 +1,17 @@
 <html><head><title>Umar's Home Page</title></head><body>
-<style>h1 { font-style: italic }h1 { color: rgb(40%,40%,40%) }h1 { background-color: rgb(60%,60%,60%) }
-h2 { font-style: italic }h2 { color: rgb(40%,40%,40%) }h2 { background-color: rgb(60%,60%,60%) }
-h3 { font-style: italic }h3 { color: rgb(40%,40%,40%) }h3 { background-color: rgb(60%,60%,60%) }
-h4 { font-style: italic }h4 { color: rgb(40%,40%,40%) }h4 { background-color: rgb(60%,60%,60%) }
-h5 { font-style: italic }h5 { color: rgb(40%,40%,40%) }h5 { background-color: rgb(60%,60%,60%) }
-h6 { font-style: italic }h6 { color: rgb(40%,40%,40%) }h6 { background-color: rgb(60%,60%,60%) }
-body { color: rgb(10%,10%,10%) }body { background-color: rgb(50%,50%,50%) }
-a { color: rgb(10%,10%,10%) }a { background-color: rgb(60%,60%,60%) }
-li { color: rgb(10%,10%,10%) }li { background-color: rgb(53%,53%,53%) }
+<style>h1 { font-style: italic }h1 { color: rgb(40%,40%,40%) }h1 { background-color: rgb(65%,65%,65%) }
+h2 { font-style: italic }h2 { color: rgb(40%,40%,40%) }h2 { background-color: rgb(65%,65%,65%) }
+h3 { font-style: italic }h3 { color: rgb(40%,40%,40%) }h3 { background-color: rgb(65%,65%,65%) }
+h4 { font-style: italic }h4 { color: rgb(40%,40%,40%) }h4 { background-color: rgb(65%,65%,65%) }
+h5 { font-style: italic }h5 { color: rgb(40%,40%,40%) }h5 { background-color: rgb(65%,65%,65%) }
+h6 { font-style: italic }h6 { color: rgb(40%,40%,40%) }h6 { background-color: rgb(65%,65%,65%) }
+body { color: rgb(10%,10%,10%) }body { background-color: rgb(30%,30%,30%) }
+a { color: rgb(5%,5%,5%) }a { background-color: rgb(60%,60%,60%) }
+li { color: rgb(10%,10%,10%) }li { background-color: rgb(60%,60%,60%) }
+td { color: rgb(10%,10%,10%) }td { background-color: rgb(60%,60%,60%) }
 li { list-style-type: upper-roman }
-li { border: 1px solid rgb(70%,70%,70%) }
 td { width: 100px }
-td { color: rgb(10%,10%,10%) }td { background-color: rgb(55%,55%,55%) }
+li { border: 1px solid rgb(70%,70%,70%) }
 td { border: 1px solid rgb(40%,40%,40%) }</style><h1>Umar's Home Page</h1><ol><li><a href='#bookmarks'>Bookmarks</a></li>
 <li><a href='#personality'>Personality Defect Elucidation and Correction</a><ol><li><a href=''>Character Strengths and Virtues</a></li>
 <li><a href=''>Wisdom and Knowledge</a></li>
@@ -1093,7 +1093,17 @@ module H = struct
     el "html" s
 
   let page f h b = F.write f @@ html h b
-  let pagei f h b = F.write f @@ html h (b@[C.invert_page])
+  let pagei f h b = F.write f @@ html h (b@[C.invert_page])                  
+
+  let inline e l s =
+    let xx x = cat ["<";x;">"] in
+    let c = cat ["/";e] |> xx in
+    let f (x,y) = cat [x;":";y] in
+    let l = List.map f l |> String.concat ";" in
+    let o = cat [e;" ";kv "style" l] |> xx in        
+    cat [o;s;c]
+
+  let div l s = inline "div" l s
 end
 
 
@@ -1610,14 +1620,16 @@ let css =
   let rc s x y = fbc red s x y in
   let grc s x y = fbc green s x y in
   let bc s x y = fbc blue s x y in
-  let h s = cat [italic s;gc s 40 60] in
+  let h s = cat [italic s;gc s 40 65] in
   let hh = List.map h ["h1";"h2";"h3";"h4";"h5";"h6"] |> unlines in
-  C.style [hh;gc "body" 10 50;gc "a" 10 60;
-           gc "li" 10 53;
+  C.style [hh;
+           gc "body" 10 30;
+           gc "a" 5 60;
+           gc "li" 10 60;
+           gc "td" 10 60;
            lis "upper-roman";
-           border "li" 1 "solid" (grey 70);
            wpx "td" 100;
-           gc "td" 10 55;
+           border "li" 1 "solid" (grey 70);
            border "td" 1 "solid" (grey 40)]
 
   
