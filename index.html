@@ -1,5 +1,14 @@
-<html><head><title>Umar's Home Page</title></head><body><style>td { width : 100px }
-td { border : 1px solid black }</style><h1>Umar's Home Page</h1><ol><li><a href='#bookmarks'>Bookmarks</a></li>
+<html><head><title>Umar's Home Page</title></head><body><style>h1 { font-style: italic }h1 { color: rgb(40%,40%,40%) }h1 { background-color: rgb(60%,60%,60%) }
+h2 { font-style: italic }h2 { color: rgb(40%,40%,40%) }h2 { background-color: rgb(60%,60%,60%) }
+h3 { font-style: italic }h3 { color: rgb(40%,40%,40%) }h3 { background-color: rgb(60%,60%,60%) }
+h4 { font-style: italic }h4 { color: rgb(40%,40%,40%) }h4 { background-color: rgb(60%,60%,60%) }
+h5 { font-style: italic }h5 { color: rgb(40%,40%,40%) }h5 { background-color: rgb(60%,60%,60%) }
+h6 { font-style: italic }h6 { color: rgb(40%,40%,40%) }h6 { background-color: rgb(60%,60%,60%) }
+body { color: rgb(10%,10%,10%) }body { background-color: rgb(50%,50%,50%) }
+a { color: rgb(10%,10%,10%) }a { background-color: rgb(60%,60%,60%) }
+td { color: rgb(10%,10%,10%) }td { background-color: rgb(55%,55%,55%) }
+td { width: 100px }
+td { border: 1px solid black }</style><h1>Umar's Home Page</h1><ol><li><a href='#bookmarks'>Bookmarks</a></li>
 <li><a href='#personality'>Personality Defect Elucidation and Correction</a><ol><li><a href=''>Character Strengths and Virtues</a></li>
 <li><a href=''>Wisdom and Knowledge</a></li>
 <li><a href=''>Courage</a></li>
@@ -1031,8 +1040,6 @@ module C = struct
   let invert_page =
     let i = invert_full in
     style [i "body";i "img"]
-
-  let _ = invert_page |> print_endline
 end
          
 module H = struct          
@@ -1483,11 +1490,6 @@ let personality =
   let h = H.h2 "Personality Defect Elucidation and Correction" in
   cat [a;h;character;seligman;matrix;ticks]
 
-let css =
-  let f l = cat ["<style>";unlines l;"</style>"] in
-  f ["td { width : 100px }";
-     "td { border : 1px solid black }"]
-
 let this_code =
   let f = "/home/umar/code-files/home.ml" in
   let a = H.anchor "code" in
@@ -1577,6 +1579,32 @@ let folly =
   let bb = ["Bura Jungle";"2005-2019"] in
   let t = H.table [i;ii;b;bb] in
   cat [H.h2 "Rabnawaz's Financial Folly";t]
+
+let css =
+  let r = C.rule in
+  let pc = C.pc in
+  let fs s v = r s "font-style" v in
+  let italic s = fs s "italic" in
+  let bg s v = r s "background-color" v in
+  let fg s v = r s "color" v in
+  let rgb x y z = C.func "rgb" [pc x;pc y;pc z] in
+  let grey x = rgb x x x in
+  let red x = rgb x 0 0 in
+  let green x = rgb 0 x 0 in
+  let blue x = rgb 0 0 x in
+  let fbc f s x y = cat [f x |> fg s;f y |> bg s] in
+  let gc s x y = fbc grey s x y in
+  let rc s x y = fbc red s x y in
+  let grc s x y = fbc green s x y in
+  let bc s x y = fbc blue s x y in
+  let h s = cat [italic s;gc s 40 60] in
+  let hh = List.map h ["h1";"h2";"h3";"h4";"h5";"h6"] |> unlines in
+  let f l = cat ["<style>";unlines l;"</style>"] in
+  f [hh;gc "body" 10 50;gc "a" 10 60;
+     gc "td" 10 55;
+     "td { width: 100px }";
+     "td { border: 1px solid black }"]
+
   
 let _ =
   let f = "/home/umar/public_html/index.html" in
