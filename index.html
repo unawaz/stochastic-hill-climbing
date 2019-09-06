@@ -8,6 +8,7 @@ h6 { font-style: italic }h6 { color: rgb(40%,40%,40%) }h6 { background-color: rg
 body { color: rgb(10%,10%,10%) }body { background-color: rgb(50%,50%,50%) }
 a { color: rgb(10%,10%,10%) }a { background-color: rgb(60%,60%,60%) }
 li { color: rgb(10%,10%,10%) }li { background-color: rgb(53%,53%,53%) }
+li { list-style-type: upper-roman }
 li { border: 1px solid rgb(70%,70%,70%) }
 td { width: 100px }
 td { color: rgb(10%,10%,10%) }td { background-color: rgb(55%,55%,55%) }
@@ -1038,7 +1039,8 @@ module C = struct
   let pc n = si n ^ "%"
   let px n = si n ^ "px"
   let style l = cat ["\n<style>";unlines l;"</style>"]
-
+  let max = pc 100
+              
   let invert s n = rule s "filter" (func "invert" [pc n])
   let invert_full s = invert s 100
   let invert_page =
@@ -1588,6 +1590,7 @@ let css =
   let r = C.rule in
   let pc = C.pc in
   let px = C.px in
+  let lis v = r "li" "list-style-type" v in
   let border q n s c = r q "border" (unwords [C.px n;s;c]) in
   let wpx s n = px n |> r s "width" in
   let hpx s n = px n |> r s "height" in
@@ -1611,6 +1614,7 @@ let css =
   let hh = List.map h ["h1";"h2";"h3";"h4";"h5";"h6"] |> unlines in
   C.style [hh;gc "body" 10 50;gc "a" 10 60;
            gc "li" 10 53;
+           lis "upper-roman";
            border "li" 1 "solid" (grey 70);
            wpx "td" 100;
            gc "td" 10 55;
