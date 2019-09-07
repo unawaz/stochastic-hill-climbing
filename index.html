@@ -1,18 +1,18 @@
 <html><head><title>Umar's Home Page</title></head><body>
-<style>h1 { font-style: italic }h1 { color: rgb(40%,40%,40%) }h1 { background-color: rgb(65%,65%,65%) }
-h2 { font-style: italic }h2 { color: rgb(40%,40%,40%) }h2 { background-color: rgb(65%,65%,65%) }
-h3 { font-style: italic }h3 { color: rgb(40%,40%,40%) }h3 { background-color: rgb(65%,65%,65%) }
-h4 { font-style: italic }h4 { color: rgb(40%,40%,40%) }h4 { background-color: rgb(65%,65%,65%) }
-h5 { font-style: italic }h5 { color: rgb(40%,40%,40%) }h5 { background-color: rgb(65%,65%,65%) }
-h6 { font-style: italic }h6 { color: rgb(40%,40%,40%) }h6 { background-color: rgb(65%,65%,65%) }
-body { color: rgb(10%,10%,10%) }body { background-color: rgb(30%,30%,30%) }
-a { color: rgb(5%,5%,5%) }a { background-color: rgb(60%,60%,60%) }
-li { color: rgb(10%,10%,10%) }li { background-color: rgb(60%,60%,60%) }
-td { color: rgb(10%,10%,10%) }td { background-color: rgb(60%,60%,60%) }
+<style>h1 { font-style: italic }h1 { color: rgb(20%,20%,20%) }h1 { background-color: rgb(75%,75%,75%) }
+h2 { font-style: italic }h2 { color: rgb(20%,20%,20%) }h2 { background-color: rgb(75%,75%,75%) }
+h3 { font-style: italic }h3 { color: rgb(20%,20%,20%) }h3 { background-color: rgb(75%,75%,75%) }
+h4 { font-style: italic }h4 { color: rgb(20%,20%,20%) }h4 { background-color: rgb(75%,75%,75%) }
+h5 { font-style: italic }h5 { color: rgb(20%,20%,20%) }h5 { background-color: rgb(75%,75%,75%) }
+h6 { font-style: italic }h6 { color: rgb(20%,20%,20%) }h6 { background-color: rgb(75%,75%,75%) }
+body { color: rgb(0%,0%,0%) }body { background-color: rgb(0%,0%,0%) }
+a { color: rgb(20%,20%,20%) }a { background-color: rgb(75%,75%,75%) }
+li { color: rgb(20%,20%,20%) }li { background-color: rgb(75%,75%,75%) }
+td { color: rgb(0%,0%,0%) }td { background-color: rgb(75%,75%,75%) }
 li { list-style-type: upper-roman }
 td { width: 100px }
-li { border: 1px solid rgb(70%,70%,70%) }
-td { border: 1px solid rgb(40%,40%,40%) }</style><h1>Umar's Home Page</h1><ol><li><a href='#bookmarks'>Bookmarks</a></li>
+li { border: 1px solid rgb(100%,100%,100%) }
+td { border: 1px solid rgb(100%,100%,100%) }</style><h1>Umar's Home Page</h1><ol><li><a href='#bookmarks'>Bookmarks</a></li>
 <li><a href='#personality'>Personality Defect Elucidation and Correction</a><ol><li><a href=''>Character Strengths and Virtues</a></li>
 <li><a href=''>Wisdom and Knowledge</a></li>
 <li><a href=''>Courage</a></li>
@@ -1005,112 +1005,8 @@ td { border: 1px solid rgb(40%,40%,40%) }</style><h1>Umar's Home Page</h1><ol><l
 <li>Bathroom</li>
 <li>Lounge</li>
 <li>Storage</li></ul></li>
-<li>Prisons : Gridded RV's</li></ul><a name='code'></a><h2>This Code</h2><pre>module U = struct
-  let cat l = String.concat "" l
-  let unwords l = String.concat " " l
-  let unlines l = String.concat "\n" l
-  let si = string_of_int
-  let sf = string_of_float
-  let xyx x y = cat [x;y;x]
-  let sq s = xyx "'" s
-  let dq s = xyx "\"" s
-  let uc l = String.concat "," l
-end
-open U
-
-module F = struct
-  let write f s =
-    let c = open_out f in
-    output_string c s;
-    close_out c    
-  let read f =  
-    let lines = ref [] in
-    let c = open_in f in
-    try
-      while true; do
-        lines := input_line c :: !lines
-      done; !lines
-    with End_of_file -> close_in c; List.rev !lines
-end
-
-module C = struct
-  let rule s k v = cat [s;" { ";k;": ";v;" }"]
-  let func n al = cat [n;"(";uc al;")"]
-  let pc n = si n ^ "%"
-  let px n = si n ^ "px"
-  let style l = cat ["\n<style>";unlines l;"</style>"]
-  let max = pc 100
-              
-  let invert s n = rule s "filter" (func "invert" [pc n])
-  let invert_full s = invert s 100
-  let invert_page =
-    let i = invert_full in
-    style [i "body";i "img"]
-end
-         
-module H = struct          
-  let el s ss = cat ["<";s;">";ss;"</";s;">"]
-              
-  let hn n s =
-    let h = cat ["h";si n] in
-    el h s
-
-  let h1 s = hn 1 s
-  let h2 s = hn 2 s
-  let h3 s = hn 3 s
-  let h4 s = hn 4 s
-  let h5 s = hn 5 s
-  let h6 s = hn 6 s
-
-  let title s = el "title" s
-
-  let kv k v = cat [k;"=";sq v]
-  let kvn k n = cat [k;"=";sq @@ si n]
-              
-  let src s = kv "src" s
-  let width n = kvn "width" n
-  let height n = kvn "height" n
-            
-  let imgw u w = cat ["<img ";src u;width w;">"]
-  let imgh u h = cat ["<img ";src u;height h;">"]
-
-  let link u s = cat ["<a ";kv "href" u;">";s;"</a>"]
-  let anchor s = cat ["<a name='";s;"'></a>"]
-               
-  let li s = el "li" s
-  let ul l = el "ul" @@ unlines @@ List.map li l
-  let ol l = el "ol" @@ unlines @@ List.map li l
-
-  let table l =
-    let td x = el "td" x in
-    let tr ll = el "tr" @@ unlines @@ List.map td ll in
-    el "table" @@ unlines @@ List.map tr l
-           
-  let html h b =
-    let head = el "head" @@ cat h in
-    let body = el "body" @@ cat b in
-    let s = cat [head;body] in
-    el "html" s
-
-  let page f h b = F.write f @@ html h b
-  let pagei f h b = F.write f @@ html h (b@[C.invert_page])                  
-
-  let inline e l s =
-    let xx x = cat ["<";x;">"] in
-    let c = cat ["/";e] |> xx in
-    let f (x,y) = cat [x;":";y] in
-    let l = List.map f l |> String.concat ";" in
-    let o = cat [e;" ";kv "style" l] |> xx in        
-    cat [o;s;c]
-
-  let div l s = inline "div" l s
-end
-
-
-module D = struct
-  open H
-     
-end
+<li>Prisons : Gridded RV's</li></ul><a name='code'></a><h2>This Code</h2><pre>#mod_use "/home/umar/code-files/util.ml";;
+open Util
          
 let udacity = H.link "http://www.udacity.com" "Udacity"
 let fastai = H.link "http://www.fast.ai" "fast.ai"
@@ -1597,41 +1493,26 @@ let folly =
   cat [H.h2 "Rabnawaz's Financial Folly";t]
 
 let css =
-  let r = C.rule in
-  let pc = C.pc in
-  let px = C.px in
-  let lis v = r "li" "list-style-type" v in
-  let border q n s c = r q "border" (unwords [C.px n;s;c]) in
-  let wpx s n = px n |> r s "width" in
-  let hpx s n = px n |> r s "height" in
-  let wpc s n = pc n |> r s "width" in
-  let hpc s n = pc n |> r s "height" in
-  let fs s v = r s "font-style" v in
-  let italic s = fs s "italic" in
-  let bg s v = r s "background-color" v in
-  let fg s v = r s "color" v in
-  let rgb x y z = C.func "rgb" [pc x;pc y;pc z] in
-  let grey x = rgb x x x in
-  let red x = rgb x 0 0 in
-  let green x = rgb 0 x 0 in
-  let blue x = rgb 0 0 x in
-  let fbc f s x y = cat [f x |> fg s;f y |> bg s] in
-  let gc s x y = fbc grey s x y in
-  let rc s x y = fbc red s x y in
-  let grc s x y = fbc green s x y in
-  let bc s x y = fbc blue s x y in
-  let h s = cat [italic s;gc s 40 65] in
+  let black = 0 in
+  let verydark = 10 in
+  let dark = 20 in
+  let mediumdark = 35 in
+  let medium = 50 in
+  let mediumlight = 60 in
+  let light = 75 in
+  let verylight = 90 in
+  let white = 100 in
+  let h s = cat [C.italic s;C.gc s dark light] in
   let hh = List.map h ["h1";"h2";"h3";"h4";"h5";"h6"] |> unlines in
   C.style [hh;
-           gc "body" 10 30;
-           gc "a" 5 60;
-           gc "li" 10 60;
-           gc "td" 10 60;
-           lis "upper-roman";
-           wpx "td" 100;
-           border "li" 1 "solid" (grey 70);
-           border "td" 1 "solid" (grey 40)]
-
+           C.gc "body" black black;
+           C.gc "a" dark light;
+           C.gc "li" dark light;
+           C.gc "td" black light;
+           C.lis "upper-roman";
+           C.wpx "td" 100;
+           C.border "li" 1 "solid" (C.grey white);
+           C.border "td" 1 "solid" (C.grey white)]
   
 let _ =
   let f = "/home/umar/public_html/index.html" in
