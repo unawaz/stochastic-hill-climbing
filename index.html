@@ -1,14 +1,14 @@
 <html><head><title>Umar's Home Page</title></head><body>
-<style>h1 { font-style: italic }h1 { color: rgb(20%,20%,20%) }h1 { background-color: rgb(75%,75%,75%) }
-h2 { font-style: italic }h2 { color: rgb(20%,20%,20%) }h2 { background-color: rgb(75%,75%,75%) }
-h3 { font-style: italic }h3 { color: rgb(20%,20%,20%) }h3 { background-color: rgb(75%,75%,75%) }
-h4 { font-style: italic }h4 { color: rgb(20%,20%,20%) }h4 { background-color: rgb(75%,75%,75%) }
-h5 { font-style: italic }h5 { color: rgb(20%,20%,20%) }h5 { background-color: rgb(75%,75%,75%) }
-h6 { font-style: italic }h6 { color: rgb(20%,20%,20%) }h6 { background-color: rgb(75%,75%,75%) }
-body { color: rgb(0%,0%,0%) }body { background-color: rgb(0%,0%,0%) }
-a { color: rgb(20%,20%,20%) }a { background-color: rgb(75%,75%,75%) }
-li { color: rgb(20%,20%,20%) }li { background-color: rgb(75%,75%,75%) }
-td { color: rgb(0%,0%,0%) }td { background-color: rgb(75%,75%,75%) }
+<style>h1 { font-style: italic }h1 { color: rgb(100%,100%,100%) }h1 { background-color: rgb(0%,0%,0%) }
+h2 { font-style: italic }h2 { color: rgb(100%,100%,100%) }h2 { background-color: rgb(0%,0%,0%) }
+h3 { font-style: italic }h3 { color: rgb(100%,100%,100%) }h3 { background-color: rgb(0%,0%,0%) }
+h4 { font-style: italic }h4 { color: rgb(100%,100%,100%) }h4 { background-color: rgb(0%,0%,0%) }
+h5 { font-style: italic }h5 { color: rgb(100%,100%,100%) }h5 { background-color: rgb(0%,0%,0%) }
+h6 { font-style: italic }h6 { color: rgb(100%,100%,100%) }h6 { background-color: rgb(0%,0%,0%) }
+body { color: rgb(100%,100%,100%) }body { background-color: rgb(0%,0%,0%) }
+a { color: rgb(100%,100%,100%) }a { background-color: rgb(0%,0%,0%) }
+li { color: rgb(100%,100%,100%) }li { background-color: rgb(0%,0%,0%) }
+td { color: rgb(100%,100%,100%) }td { background-color: rgb(0%,0%,0%) }
 li { list-style-type: upper-roman }
 td { width: 100px }
 li { border: 1px solid rgb(100%,100%,100%) }
@@ -1492,34 +1492,24 @@ let folly =
   let t = H.table [i;ii;b;bb] in
   cat [H.h2 "Rabnawaz's Financial Folly";t]
 
-let css =
-  let black = 0 in
-  let verydark = 10 in
-  let dark = 20 in
-  let mediumdark = 35 in
-  let medium = 50 in
-  let mediumlight = 60 in
-  let light = 75 in
-  let verylight = 90 in
-  let white = 100 in
-  let h s = cat [C.italic s;C.gc s dark light] in
+let css w b =
+  let wb s = C.gc s w b in
+  let bw s = C.gc s b w in
+  let h s = cat [C.italic s;wb s] in
   let hh = List.map h ["h1";"h2";"h3";"h4";"h5";"h6"] |> unlines in
   C.style [hh;
-           C.gc "body" black black;
-           C.gc "a" dark light;
-           C.gc "li" dark light;
-           C.gc "td" black light;
+           wb "body";wb "a";wb "li";wb "td";
            C.lis "upper-roman";
            C.wpx "td" 100;
-           C.border "li" 1 "solid" (C.grey white);
-           C.border "td" 1 "solid" (C.grey white)]
+           C.border "li" 1 "solid" (C.grey w);
+           C.border "td" 1 "solid" (C.grey w)]
   
 let _ =
   let f = "/home/umar/public_html/index.html" in
   let g = "/home/umar/stochastic-hill-climbing/index.html" in
   let h = [H.title title] in
-  let b = [css;H.h1 title;toc;bookmarks;
+  let b = [H.h1 title;toc;bookmarks;
            inheritance;folly;personality;people;
            trips;budgeting;robocars;this_code] in
-  H.pagei f h b;
-  H.page g h b<pre></body></html>
+  H.page f h ([css 0 100]@b);
+  H.page g h ([css 100 0]@b)<pre></body></html>
