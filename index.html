@@ -1492,7 +1492,9 @@ let folly =
   let t = H.table [i;ii;b;bb] in
   cat [H.h2 "Rabnawaz's Financial Folly";t]
 
-let css w b =
+let css i =
+  let w = if i == true then 0 else 100 in
+  let b = if i == true then 100 else 0 in
   let wb s = C.gc s w b in
   let bw s = C.gc s b w in
   let h s = cat [C.italic s;wb s] in
@@ -1511,5 +1513,5 @@ let _ =
   let b = [H.h1 title;toc;bookmarks;
            inheritance;folly;personality;people;
            trips;budgeting;robocars;this_code] in
-  H.page f h ([css 0 100]@b);
-  H.page g h ([css 100 0]@b)<pre></body></html>
+  H.page f h ([css true]@b);
+  H.page g h ([css false]@b)<pre></body></html>
