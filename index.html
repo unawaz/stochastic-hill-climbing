@@ -1,0 +1,113 @@
+
+<html>
+    <head></head>
+    <body>
+	<button id="dark-button">Dark Theme</button>
+	<button id="light-button">Light Theme</button>
+
+	<h1>Umar's Home Page</h1>
+
+	<div id="menu"></div>
+
+	<h2 class="apps title">Apps</h2>	
+	<ul class="apps content">
+	    <li>Ranker
+	    <li>Retirement Count Down
+	    <li>Weekend Count Down
+	    <li>Work Day Count Down
+	    <li>Full Year Meal Planner
+	    <li>Spaced Repetition Tester
+	    <li>Quran Recital Tester
+	    <li>Budget Planner
+	    <li>Leisure Planner
+	    <li>Vacation Planner
+	    <li>Personal Inventory Organizer
+	    <li>Fitness Planner
+	    <li>Positive Psychology Improver
+	    <li>Minimalism Planner
+	    <li>Homestead Planner
+	    <li>House Designer
+	    <li>Bucket List
+	    <li>Hatred / Black List
+	</ul>
+
+	<h2 class="ml title">Machine Learing Experiments</h2>	
+	<ul class="ml content">
+	    <li>Titanic
+	    <li>MNIST
+	</ul>
+	
+	<h2 class="pages title">Pages</h2>
+	<ul class="pages content">
+	    <li>Budget
+	    <li>Homestead
+	    <li>Inheritance
+	    <li>Minimalism
+	    <li>Personality
+	    <li>Retire
+	    <li>AI Society
+	    <li>Robocars
+	    <li>Housing Crisis
+	</ul>
+	
+	<h2 class="ahmed-beenish title">Ahmed and Beenish</h2>
+	<ul class="ahmed-beenish content">
+	    <li>Marge's Sisters - Smoking Around Children
+	</ul>
+	
+	<h2 class="bookmarks title">Bookmarks</h2>
+	<ul class="bookmarks content">
+	    <li>Hacker News
+	    <li>Hacker News Books
+	    <li>Reddit : Machine Learning
+	    <li>Reddit : Data Sets
+	    <li>Reddit : Self Driving Cars
+	</ul>
+
+	<style>
+	 h2 {
+	     display: inline;
+	     border-bottom: 1px solid;
+	     border-left: 1px solid;
+	     font-size: 0.9em;
+	     margin: 5px;
+	 }
+	</style>
+	    
+	<script src="jquery.js"></script>
+
+	<script>
+
+	 $("#dark-button").click(function() {
+	     $("body")
+		 .css("background-color","black")
+	     	 .css("color","white");
+	 });
+
+	 $("#light-button").click(function() {
+	     $("body")
+		 .css("background-color","white")
+	     	 .css("color","black");
+	 });
+
+	 $(".content").hide(3000);
+
+	 $(".title").detach().appendTo("#menu");
+	 
+	 function menu(x) {
+	     $(".title."+x).click(function() {
+		 $(".content").hide();
+		 $(".content."+x).show(2000);
+	     });
+	 }
+
+	 menu("apps");
+	 menu("ml");
+	 menu("pages");
+	 menu("ahmed-beenish");
+	 menu("bookmarks");
+	 
+	</script>
+	
+    </body>
+</html>
